@@ -1,6 +1,6 @@
 package File::Next::OO;
 
-$VERSION = '0.01_04';
+$VERSION = '0.02';
 use File::Next 0.28;
 
 #use warnings;
@@ -30,7 +30,7 @@ File::Next::OO - File-finding iterator Wrapper for C<File::Next::files> function
 
 =head1 VERSION
 
-This document describes File::Next::OO version 0.01
+This document describes File::Next::OO version 0.02
 
 
 =head1 SYNOPSIS
@@ -138,7 +138,9 @@ If I<error_handler> is set, then any errors will be sent through
 it.  By default, this value is C<CORE::die>.
 
 
-=head2 files is a alias for new it is a matter of taste
+=head2 files 
+
+files is a alias for new it is just a matter of taste
 
 
 =head1 CONFIGURATION AND ENVIRONMENT

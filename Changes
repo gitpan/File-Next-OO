@@ -1,5 +1,7 @@
 Revision history for File-Next-OO
+0.02  Sun Sep 17 21:40:56 CEST 2006
+       Fix requirements in Build.PL
 
-0.0.1  Sat Sep 16 10:59:50 2006
+0.01  Sat Sep 16 10:59:50 2006
        Initial release.
 

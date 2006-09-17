@@ -9,7 +9,8 @@ my $builder = Module::Build->new(
     dist_version_from   => 'lib/File/Next/OO.pm',
     requires => {
         'Test::More' => 0,
-        'version'    => 0,
+	'File::Next' => 0.28,
+#        'version'    => 0,
     },
     add_to_cleanup      => [ 'File-Next-OO-*' ],
 );
