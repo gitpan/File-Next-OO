@@ -1,7 +1,13 @@
 Revision history for File-Next-OO
+
+0.03  Sun Oct  8 11:48:58 CEST 2006
+       - Fix wrong alias DO NOT use *x = \$abc.
+       Always use *x = *abc. otherwise localized vars/functions
+       from x are not seen in abc!
+
 0.02  Sun Sep 17 21:40:56 CEST 2006
-       Fix requirements in Build.PL
+       - Fix requirements in Build.PL
 
 0.01  Sat Sep 16 10:59:50 2006
-       Initial release.
+       - Initial release.
 

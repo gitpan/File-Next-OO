@@ -1,6 +1,6 @@
 package File::Next::OO;
 
-$VERSION = '0.02';
+$VERSION = '0.03';
 use File::Next 0.28;
 
 #use warnings;
@@ -14,9 +14,9 @@ BEGIN {
     return wantarray ? do { my @t; while( my $f = $i->() ){ push @t, $f } @t } : $i;
   }
 
-  *files = \&new;
-  *name  = \$File::Next::name;
-  *dir   = \$File::Next::dir;
+  *files = *new;
+  *name  = *File::Next::name;
+  *dir   = *File::Next::dir;
 
 }
 
