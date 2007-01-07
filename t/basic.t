@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 12;
+use Test::More tests => 14;
 
 BEGIN {
     use_ok( 'File::Next::OO' );
@@ -127,6 +127,21 @@ ONLY_FILES_WITH_AN_EXTENSION: {
     _sets_match( \@expected, \@actual, 'ONLY_FILES_WITH_AN_EXTENSION' );
 }
 
+DIRS: {
+    my $iter = File::Next::OO->dirs( 't' );
+    isa_ok( $iter, 'CODE' );
+
+    my @actual = slurp( $iter );
+    my @expected = qw(
+        t
+        t/swamp
+        t/swamp/a
+        t/swamp/b
+        t/swamp/c
+    );
+    _sets_match( \@expected, \@actual, 'DIRS' );
+}
+
 
 sub slurp {
     my $iter = shift;
@@ -145,7 +160,7 @@ sub _sets_match {
 
     # Normalize all the paths
     for my $path ( @expected, @actual ) {
-        $path = File::Next::_reslash( $path );
+        $path = File::Next::reslash( $path );
     }
 
     local $Test::Builder::Level = $Test::Builder::Level + 1; ## no critic

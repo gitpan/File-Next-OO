@@ -9,7 +9,7 @@ WriteMakefile(
     ABSTRACT_FROM       => 'lib/File/Next/OO.pm',
     PL_FILES            => {},
     PREREQ_PM => {
-	'File::Next' => 0.28,
+	'File::Next' => 0.38,
         'Test::More' => 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },

@@ -1,7 +1,7 @@
 package File::Next::OO;
 
-$VERSION = '0.03';
-use File::Next 0.28;
+$VERSION = '0.04';
+use File::Next 0.38;
 
 #use warnings;
 use strict;
@@ -18,6 +18,12 @@ BEGIN {
   *name  = *File::Next::name;
   *dir   = *File::Next::dir;
 
+  sub dirs {
+    shift if ref $_[1] eq 'HASH';
+    my $i = File::Next::dirs(@_);
+    return wantarray ? do { my @t; while( my $f = $i->() ){ push @t, $f } @t } : $i;
+  }
+
 }
 
 1;
@@ -30,13 +36,15 @@ File::Next::OO - File-finding iterator Wrapper for C<File::Next::files> function
 
 =head1 VERSION
 
-This document describes File::Next::OO version 0.02
+This document describes File::Next::OO version 0.04
 
 
 =head1 SYNOPSIS
 
 File::Next::OO is just a wrapper around C<File::Next::files> function. 
-But it is easy to remember and less typing. Call it always with object notation.
+But it is easy to remember and less typing. 
+
+Call it always with object notation. Not mixed as in File::Next itself.
 
 
     use File::Next::OO;
@@ -65,13 +73,21 @@ But it is easy to remember and less typing. Call it always with object notation.
   my @files = File::Next::OO->files( "/tmp" );
     
 
+  # and the same with dirs
+  my @dirs = File::Next::OO->dirs('/tmp');
+
+  # or in peaces
+  my $dirs = File::Next::OO->dirs( '/tmp' );
+  while( my $dir = $dirs->() ){
+    print $dir, "\n";
+  }
+
 =head1 DESCRIPTION
 
 =head2 new
 
 new takes a list of directories and optional a hashref with params.
 For all the details see File::Next::files documentation
-
 
 =head3 file_filter -> \&file_filter
 
@@ -142,6 +158,15 @@ it.  By default, this value is C<CORE::die>.
 
 files is a alias for new it is just a matter of taste
 
+=head2 dirs
+
+takes a list of directories and optional a hashref with params.
+For all the details see File::Next::dirs documentation
+
+In scalar context a iterator is returned, that walks directories. Each call to the iterator returns another directory.
+
+In list context a list with all dirs is returned.
+
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
@@ -149,7 +174,7 @@ File::Next::OO requires no configuration files or environment variables.
 
 =head1 DEPENDENCIES
 
-this module relies on C<File::Next> 0.28 and is only a syntax wrapper around it.
+this module relies on C<File::Next> 0.38 and is only a syntax wrapper around it.
 
 =head1 INCOMPATIBILITIES
 
